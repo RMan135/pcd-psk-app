@@ -26,7 +26,7 @@ let model = {
 
 var temp_img = ""
 
-function saveFile(file, callback) {
+function readFile(file, callback) {
 
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -51,7 +51,7 @@ export default class InputFormController extends ContainerController {
         console.log(this.tempModel)
 
         this.on("update-avatar", (event) => {
-            saveFile(event.data[0], (result) => {
+            readFile(event.data[0], (result) => {
                 this.model.file.value = result;
             });
         });
