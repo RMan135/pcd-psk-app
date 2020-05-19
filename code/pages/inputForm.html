@@ -1,0 +1,24 @@
+<psk-page title="Input">
+    <psk-form controller-name="InputFormController">
+        <psk-form-row layout="xs=[12,12] m=[12,12] l=[12,12] xl=[12,12]">
+            <psk-label view-model="sectionTitle"></psk-label>
+            <psk-text-input view-model="title"></psk-text-input>
+        </psk-form-row>
+
+        <psk-form-row layout="xs=[12,12] m=[12,12] l=[12,12] xl=[12,12]">
+            <psk-label view-model="content.title"></psk-label>
+            <psk-email-input view-model="content"></psk-email-input>
+        </psk-form-row>
+
+        <psk-form-row layout="xs=[4,4] m=[4,4] l=[4,4] xl=[4,4]">
+            <psk-files-chooser label="Select files" event-name="update-avatar">
+            </psk-files-chooser>
+        </psk-form-row>
+
+        <psk-form-row layout="xs=[12,12] m=[12,12] l=[12,12] xl=[12,12]">
+            <span></span>
+            <psk-button label="Send Data" event-name="onSubmit" button-class="btn btn-info btn-sm"></psk-button>
+        </psk-form-row>
+
+    </psk-form>
+</psk-page>

@@ -1,18 +1,24 @@
-<psk-page title="PCD PSK App">
-    <psk-container controller-name="TodoListController">
-        <!-- Render each list item from the model -->
-        <psk-for-each data-view-model="items">
-            <p><psk-text-input value="@item" read-only="true"></psk-text-input></p>
-        </psk-for-each>
-
-
-        <!-- Form controls for adding a new item -->
-        <p>
-            <psk-text-input view-model="item"></psk-text-input><br />
-            <psk-button label="Add" button-class="btn btn-info" event-name="list:newItem"></psk-button>
-        </p>
-
-        <!-- Save button -->
-        <p><psk-button label="Save list" button-class="btn btn-primary" event-name="list:save"></psk-button></p>
-    </psk-container>
-</psk-page>
+<style>
+    img{
+        display: block;
+        max-width:500px;
+        max-height:300px;
+        width: auto;
+        height: auto;
+    }
+    label h5 {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+</style>
+<psk-container controller-name="HomeController">
+    <psk-for-each data-view-model="entities">
+        <psk-card view-model="title" title="@title" id="321021">
+           
+           <psk-label view-model="description"></psk-label>
+           <psk-img width="50" height="50" src="@image" >
+           </psk-img>
+            
+        </psk-card>            
+       
+    </psk-for-each>
+</psk-container>

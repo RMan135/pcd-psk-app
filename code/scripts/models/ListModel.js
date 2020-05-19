@@ -2,12 +2,7 @@ export default class ListModel {
 
     constructor() {
         this.data = {
-            items: [], // holds all the items of the list
-            // view model for the "add new item" input
-            item: {
-                name: 'item',
-                label: 'New item'
-            }
+            entities: [], // holds all the entities of the list
         };
     }
 
@@ -24,7 +19,8 @@ export default class ListModel {
                 }
 
                 return response.json().then((data) => {
-                    model.items = data.items;
+                    model.entities = data.entities;
+                    console.log('fetched data', model.entities)
                 })
             })
             .catch((err) => {
@@ -37,8 +33,33 @@ export default class ListModel {
     * Save the model to EDFS
     */
     save(data) {
-        this.data.items = data.items;
+        console.log("saving data", data)
+        this.data.entities = data.entities;
 
+        const listFile = new File([JSON.stringify(this.data)], 'list.json');
+
+        // We're using the Upload middleware of the Service Worker
+        // to upload data to EDFS.
+        const saveEndpointUrl = `/upload?path=/data&filename=${listFile.name}`;
+
+        return fetch(saveEndpointUrl, {
+            method: 'POST',
+            body: listFile
+        }).then((response) => {
+            return this.getJsonResponseBody(response).then((data) => {
+                if (!response.ok || response.status != 201) {
+                    return Promise.reject("Unable to save list");
+                }
+
+                return Promise.resolve();
+            })
+        })
+    }
+
+    saveSingleObject(item) {
+        console.log("saving single item", item)
+        this.data.entities.push(item);
+        console.log("=>", this.data.entities)
         const listFile = new File([JSON.stringify(this.data)], 'list.json');
 
         // We're using the Upload middleware of the Service Worker

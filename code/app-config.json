@@ -14,11 +14,17 @@
             "404": "/pages/404.html"
         },
         "pages": [{
-                "name": "Home",
-                "path": "/home",
-                "icon": "fa-home",
-                "pageSrc": "home.html"
-            }
-        ]
+            "name": "Home",
+            "path": "/home",
+            "icon": "fa-home",
+            "pageSrc": "home.html"
+        },
+        {
+            "name": "Input",
+            "path": "/inputForm",
+            "icon": "fa-edit",
+            "pageSrc": "inputForm.html"
+        }
+    ]
     }
 }
